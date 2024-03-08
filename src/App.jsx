@@ -12,7 +12,7 @@ import Main from "./components/main"
 /* App */
 function App() {
     return (
-        <div>
+        <fragment>
             <Header />
             
             <Main>
@@ -20,7 +20,7 @@ function App() {
 
                 <Players />
             </Main>            
-        </div>
+        </fragment>
     )
 }
 
