@@ -1,0 +1,10 @@
+header#header-container {
+    margin: 0;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    background: #c9d9ea;
+}

@@ -1,0 +1,24 @@
+{
+    "name": "2023-fantasy-baseball-draft-planner-client",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "parcel index.html"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "main.css": "^3.0.0",
+        "preact": "^10.19.6"
+    },
+    "devDependencies": {
+        "eslint": "^8.57.0",
+        "eslint-plugin-react": "^7.34.0",
+        "parcel-bundler": "^1.12.5"
+    },
+    "alias": {
+        "modules": "./src/modules",
+        "components": "./src/components"
+    }
+}

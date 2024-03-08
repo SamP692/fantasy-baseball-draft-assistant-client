@@ -1,0 +1,7 @@
+h1#header-text {
+    margin: 0;
+    
+    color: darkblue;
+    font-weight: bold;
+    font-size: 2rem;
+}
