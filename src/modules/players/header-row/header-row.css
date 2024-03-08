@@ -1,0 +1,5 @@
+tr#header-row {
+    border: 4px solid black;
+
+    border-bottom: slategray solid 4px;
+}

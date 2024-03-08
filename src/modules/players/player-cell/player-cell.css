@@ -1,0 +1,16 @@
+td.player-cell {
+    border: 1px solid black;
+}
+
+td.player-cell.bool {
+    text-align: center;
+}
+
+td.player-cell.num {
+    text-align: right;
+}
+
+td.player-cell input {
+    width: 2rem;
+    height: 2rem;
+}

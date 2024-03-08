@@ -21,6 +21,8 @@
         "modules": "./src/modules",
         "components": "./src/components",
         "app-config": "./app-config.js",
-        "data": "./data"
+        "data": "./src/data",
+        "hooks": "./src/hooks",
+        "structures": "./src/structures"
     }
 }

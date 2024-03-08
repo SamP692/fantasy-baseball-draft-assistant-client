@@ -1,0 +1,9 @@
+table#players-table {
+    border: 1px solid darkblue;
+
+    border-collapse: collapse;
+}
+
+table#players-table th, table#players-table td {
+    padding: 10px;
+}
