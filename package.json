@@ -19,6 +19,8 @@
     },
     "alias": {
         "modules": "./src/modules",
-        "components": "./src/components"
+        "components": "./src/components",
+        "app-config": "./app-config.js",
+        "data": "./data"
     }
 }
