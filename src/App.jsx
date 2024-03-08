@@ -4,6 +4,7 @@ import { h } from "preact"
 /* Modules */
 import Header from "./modules/header"
 import Options from "./modules/options"
+import Players from "./modules/players"
 
 /* Components */
 import Main from "./components/main"
@@ -16,6 +17,8 @@ function App() {
             
             <Main>
                 <Options />
+
+                <Players />
             </Main>            
         </div>
     )
