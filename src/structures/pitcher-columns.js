@@ -111,9 +111,16 @@ function pitcherColumns(rawValues = false) {
         },
         {
             header: "PAs",
-            dispalyOrder: 1000,
+            displayOrder: 1000,
             dataType: columnDataTypes.num,
             dataKey: "pa",
+            hideable: true
+        },
+        {
+            header: "GS",
+            displayOrder: 1050,
+            dataType: columnDataTypes.num,
+            dataKey: "gs",
             hideable: true
         },
         {

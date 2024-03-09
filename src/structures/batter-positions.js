@@ -5,7 +5,7 @@ const BATTER_POSITIONS = [
     { value: "2B", label: "Second Base" },
     { value: "3B", label: "Third Base" },
     { value: "SS", label: "Shortstop" },
-    { value: "OF", label: "Right Field" },
+    { value: "OF", label: "Outfield" },
     { value: null, label: "Any", selected: true }
 ]
 

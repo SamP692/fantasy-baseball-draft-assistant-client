@@ -5,7 +5,7 @@ import { h } from "preact"
 import "./dropdown-list-filter.css"
 
 /* Dropdown Filter List */
-function DropdownListFilter({ options, id, children }) {
+function DropdownListFilter({ options, id, children, onChange }) {
     if (!id) {
         throw new Error("DropdownListFilter requires an id prop")
     }
@@ -14,9 +14,8 @@ function DropdownListFilter({ options, id, children }) {
         <fragment>
             <label className="dropdown-list-filter" htmlFor={id}>{children}</label>
 
-            <select className="dropdown-list-filter" id={id}>
+            <select className="dropdown-list-filter" id={id} onChange={onChange}>
                 {options.map(({ value, label, selected }) => (
-                    
                     <option value={value} selected={selected} key={value}>
                         {label}
                     </option>)

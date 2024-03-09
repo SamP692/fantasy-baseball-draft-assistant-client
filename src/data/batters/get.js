@@ -3,21 +3,23 @@ import appConfig from "app-config"
 
 /* Build Filters String */
 function buildFiltersString({ position, knownKeepers, expectedKeepers }) {
-    let filtersString = ""
+    const filterStrings = []
 
     if (position) {
-        filtersString += `&position=${position}`
+        filterStrings.push(`position=${position}`)
     }
 
     if (knownKeepers) {
-        filtersString += "&knownKeepers=true"
+        filterStrings.push("knownKeepers=true")
     }
 
     if (expectedKeepers) {
-        filtersString += "&expectedKeepers=true"
+        filterStrings.push("&expectedKeepers=true")
     }
 
-    return filtersString === "" ? null : filtersString
+    if (filterStrings.length === 0) return null
+
+    return filterStrings.join("&")
 }
 
 /* Get Batters */

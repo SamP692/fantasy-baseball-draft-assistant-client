@@ -68,6 +68,14 @@ function Options() {
         setShouldUpdate(true)
     }
 
+    function handlePositionFilter(event) {
+        const position = event.target.value
+
+        setLoading(true)
+        setPositionFilter(position)
+        setShouldUpdate(true)
+    }
+
     return (
         <Container>
             <Header>
@@ -79,7 +87,7 @@ function Options() {
             </ChangeViewButton>
 
             <OptionsList>
-                <DropdownListFilter options={positionList} id={"positions-list"}>
+                <DropdownListFilter onChange={handlePositionFilter} options={positionList} id={"positions-list"}>
                     Position
                 </DropdownListFilter>
             </OptionsList>

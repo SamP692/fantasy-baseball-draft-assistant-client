@@ -36,7 +36,7 @@ export function PlayersProvider({ children }) {
             setLoading(true)
 
             const filters = {
-                positions: positionFilter,
+                position: positionFilter,
                 onlyKnownKeepers: filterOnlyKnownKeepers,
                 expectedKeepers: filterExpectedKeepers
             }
