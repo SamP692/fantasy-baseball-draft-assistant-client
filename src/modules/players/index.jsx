@@ -3,10 +3,11 @@ import { h } from "preact"
 import { useContext } from "preact/hooks"
 
 /* Configs */
-import batterColummns from "structures/batter-columns"
+import batterColumns from "structures/batter-columns"
+import pitcherColumns from "structures/pitcher-columns"
 
 /* Contexts */
-import { BattersContext } from "contexts/batters"
+import { PlayersContext } from "contexts/players"
 
 /* Components */
 import PlayersTable from "./table"
@@ -16,8 +17,10 @@ import PlayerRow from "./player-row"
 import PlayerCell from "./player-cell"
 
 /* Behaviors */
-function buildHeaderCells() {
-    const orderedColumns = batterColummns().sort((a, b) => a.displayOrder - b.displayOrder)
+function buildHeaderCells(playerCategory) {
+    const columns = playerCategory === "batters" ? batterColumns() : pitcherColumns()
+
+    const orderedColumns = columns.sort((a, b) => a.displayOrder - b.displayOrder)
 
     const cells = orderedColumns.map((col) => (
         <HeaderCell key={col.dataKey}>
@@ -28,8 +31,10 @@ function buildHeaderCells() {
     return cells
 }
 
-function buildPlayerCellConstructor(rawValues = false) {
-    const orderedColumns = batterColummns(rawValues).sort((a, b) => a.displayOrder - b.displayOrder)
+function buildPlayerCellConstructor(playerCategory, rawValues = false) {
+    const columns = playerCategory === "batters" ? batterColumns(rawValues) : pitcherColumns(rawValues)
+
+    const orderedColumns = columns.sort((a, b) => a.displayOrder - b.displayOrder)
     
     function buildPlayerCells(player) {
         const cells = orderedColumns.map((col) => {
@@ -54,11 +59,11 @@ function buildPlayerCellConstructor(rawValues = false) {
 
 /* Players */
 function Players() {
-    const { batters, loading } = useContext(BattersContext)
+    const { players, loading, playerCategory } = useContext(PlayersContext)
 
-    const buildPlayerCells = buildPlayerCellConstructor()
+    const buildPlayerCells = buildPlayerCellConstructor(playerCategory)
 
-    if (loading || !batters) {
+    if (loading || !players) {
         return <p>Loading</p>
     }
 
@@ -67,12 +72,12 @@ function Players() {
             <PlayersTable>
                 <thead>
                     <HeaderRow>
-                        {buildHeaderCells()}
+                        {buildHeaderCells(playerCategory)}
                     </HeaderRow>
                 </thead>
 
                 <tbody>
-                    {batters.map((batter) => (
+                    {players.map((batter) => (
                         <PlayerRow key={batter.id}>
                             {buildPlayerCells(batter)}
                         </PlayerRow>

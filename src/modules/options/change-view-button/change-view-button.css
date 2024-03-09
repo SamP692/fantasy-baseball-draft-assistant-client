@@ -1,0 +1,19 @@
+button.change-view {
+    width: 10rem;
+
+    font-weight: bold;
+
+    padding: 15px 0;
+
+    margin-left: 1rem;
+
+    border: 0;
+
+    background-color: lightblue;
+
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0,0.4);
+
+    cursor: pointer;
+}

@@ -1,33 +1,87 @@
 /* Core Libraries */
 import { h } from "preact"
+import { useState, useContext, useEffect } from "preact/hooks"
+
+/* Contexts */
+import { PlayersContext } from "contexts/players"
 
 /* Components */
 import Container from "./container"
 import Header from "./header"
 import OptionsList from "./options-list"
+import DropdownListFilter from "./dropdown-list-filter"
+import ChangeViewButton from "./change-view-button"
+
+/* Structures */
+import BATTER_POSITIONS from "structures/batter-positions"
+import PITCHER_POSITIONS from "structures/pitcher-positions"
 
 /* Text */
 const text = {
     title: "Controls"
 }
 
+/* Build Position Options */
+function buildPositionOptions(playerCategory, positionFilter) {
+    const defaultList = playerCategory === "batters" ? BATTER_POSITIONS : PITCHER_POSITIONS
+
+    if (!positionFilter) return defaultList
+
+    const updatedList = defaultList.map(({ value, label }) => ({
+        value,
+        label,
+        selection: value === positionFilter
+    }))
+
+    return updatedList
+}
+
 /* Options */
 function Options() {
+    const {
+        setLoading,
+        playerCategory,
+        setPlayerCategory,
+        positionFilter,
+        setPositionFilter,
+        setShouldUpdate
+    } = useContext(PlayersContext)
+
+    const [positionList, setPositionList] = useState(buildPositionOptions(playerCategory, positionFilter))
+
+    /* Update Selected Item in Position List */
+    useEffect(() => {
+        setPositionList(buildPositionOptions(playerCategory, positionFilter))
+    }, [positionFilter])
+
+    /* Handle View Change */
+    function handleViewChange() {
+        setLoading(true)
+
+        const changingToPitcherView = playerCategory === "batters"
+        if (changingToPitcherView) {
+            setPositionFilter("SP")
+        }
+
+        
+        setPlayerCategory(playerCategory === "batters" ? "pitchers" : "batters")
+        setShouldUpdate(true)
+    }
+
     return (
         <Container>
             <Header>
                 {text.title}
             </Header>
 
+            <ChangeViewButton onClick={handleViewChange}>
+                {playerCategory === "batters" ? "View Pitchers" : "View Batters"}
+            </ChangeViewButton>
+
             <OptionsList>
-                <ul>
-                    <li>Filter by position</li>
-                    <li>Only show FAs</li>
-                    <li>Only show expected FAs (which includes known FAs)</li>
-                    <li>Hide (or unhide) columns</li>
-                    <li>Switch between raw stats and standard deviations</li>
-                    <li>Maybe include the option to navigate to the player completion view</li>
-                </ul>
+                <DropdownListFilter options={positionList} id={"positions-list"}>
+                    Position
+                </DropdownListFilter>
             </OptionsList>
         </Container>
     )

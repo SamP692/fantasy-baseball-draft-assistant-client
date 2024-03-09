@@ -7,7 +7,7 @@ export const columnDataTypes = {
 
 /* View Data Transformations */
 function positionsToText(positions) {
-    return Array.isArray(positions) ? positions.join(", ") : "UTIL"
+    return Array.isArray(positions) ? positions.join(", ") : "P"
 }
 
 function isConfirmedFreeAgent([currentFantasyTeam, keeperRound]) {
@@ -35,7 +35,7 @@ function fantasyTeamNameAlias(team) {
 }
 
 /* Column Configuration */
-function batterColumns(rawValues = false) { 
+function pitcherColumns(rawValues = false) { 
     return [
         {
             header: "Name",
@@ -118,61 +118,103 @@ function batterColumns(rawValues = false) {
         },
         {
             header: "xwOBA",
-            dispalyOrder: 1100,
+            displayOrder: 1100,
             dataType: columnDataTypes.num,
             dataKey: rawValues ? "xwoba" : "xwobaDev",
             hideable: true
         },
         {
             header: "xBA",
-            dispalyOrder: 1200,
+            displayOrder: 1200,
             dataType: columnDataTypes.num,
             dataKey: rawValues ? "xba" : "xbaDev",
             hideable: true
         },
         {
             header: "xISO",
-            dispalyOrder: 1300,
+            displayOrder: 1300,
             dataType: columnDataTypes.num,
             dataKey: rawValues ? "xiso" : "xisoDev",
             hideable: true
         },
         {
             header: "Average Exit Velocity",
-            dispalyOrder: 1400,
+            displayOrder: 1400,
             dataType: columnDataTypes.num,
             dataKey: rawValues ? "avgExitVel" : "avgExitVelDev",
             hideable: true
         },
         {
             header: "Barrel Rate",
-            dispalyOrder: 1500,
+            displayOrder: 1500,
             dataType: columnDataTypes.num,
             dataKey: rawValues ? "barrelRate" : "barrelRateDev",
             hideable: true
         },
         {
+            header: "Zone Rate",
+            displayOrder: 1600,
+            dataType: columnDataTypes.num,
+            dataKey: rawValues ? "zoneRate" : "zoneRateDev",
+            hideable: true
+        },
+        {
             header: "Chase Rate",
-            dispalyOrder: 1600,
+            displayOrder: 1700,
             dataType: columnDataTypes.num,
             dataKey: rawValues ? "chaseRate" : "chaseRateDev",
             hideable: true
         },
         {
             header: "Whiff Rate",
-            dispalyOrder: 1700,
+            displayOrder: 1800,
             dataType: columnDataTypes.num,
             dataKey: rawValues ? "whiffRate" : "whiffRateDev",
             hideable: true
         },
         {
-            header: "Speed",
-            dispalyOrder: 1800,
+            header: "FB Rate",
+            displayOrder: 1900,
             dataType: columnDataTypes.num,
-            dataKey: rawValues ? "speed" : "speedDev",
+            dataKey: rawValues ? "fbRate" : "fbRateDev",
             hideable: true
         },
+        {
+            header: "FB Spin",
+            displayOrder: 2000,
+            dataType: columnDataTypes.num,
+            dataKey: rawValues ? "fbSpin" : "fbSpinDev",
+            hideable: true
+        },
+        {
+            header: "Breaking Ball Rate",
+            displayOrder: 2100,
+            dataType: columnDataTypes.num,
+            dataKey: rawValues ? "brkRate" : "brkRateDev",
+            hideable: true
+        },
+        {
+            header: "Breaking Ball Spin",
+            displayOrder: 2200,
+            dataType: columnDataTypes.num,
+            dataKey: rawValues ? "brkSpin" : "brkSpinDev",
+            hideable: true
+        },
+        {
+            header: "Off-Speed Rate",
+            displayOrder: 2300,
+            dataType: columnDataTypes.num,
+            dataKey: rawValues ? "osRate" : "osRateDev",
+            hideable: true
+        },
+        {
+            header: "Off-Speed Spin",
+            displayOrder: 2400,
+            dataType: columnDataTypes.num,
+            dataKey: rawValues ? "osSpin" : "osSpinDev",
+            hideable: true
+        }
     ]
 }
 
-export default batterColumns
+export default pitcherColumns
