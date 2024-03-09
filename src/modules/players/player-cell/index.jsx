@@ -7,10 +7,25 @@ import { columnDataTypes } from "structures/batter-columns"
 /* Styles */
 import "./player-cell.css"
 
+/* Behaviors */
+function limitNumberSize(num) {
+    const isNum = typeof num === "number"
+
+    if (isNum) {
+        const isInteger = Number.isInteger(num)
+
+        if (isInteger) return num
+
+        const limitedNumber = num.toFixed(2)
+
+        return limitedNumber
+    }
+
+    return num
+}
+
 /* Player Cell */
 function PlayerCell({ children, dataType }) {
-    console.log(dataType)
-
     if (dataType === columnDataTypes.bool) {
         return (
             <td className="player-cell bool">
@@ -24,7 +39,9 @@ function PlayerCell({ children, dataType }) {
 
     return (
         <td className={`player-cell ${dataTypeClass}`}>
-            {children}
+            <div>
+                {limitNumberSize(children)}
+            </div>
         </td>
     )
 }

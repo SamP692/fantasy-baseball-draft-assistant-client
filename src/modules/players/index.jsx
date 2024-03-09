@@ -1,12 +1,12 @@
 /* Core Libraries */
 import { h } from "preact"
-import { useEffect } from "preact/hooks"
+import { useContext } from "preact/hooks"
 
 /* Configs */
 import batterColummns from "structures/batter-columns"
 
-/* Hooks */
-import useSampleBatter from "hooks/useSampleBatter"
+/* Contexts */
+import { BattersContext } from "contexts/batters"
 
 /* Components */
 import PlayersTable from "./table"
@@ -17,7 +17,7 @@ import PlayerCell from "./player-cell"
 
 /* Behaviors */
 function buildHeaderCells() {
-    const orderedColumns = batterColummns.sort((a, b) => a.displayOrder - b.displayOrder)
+    const orderedColumns = batterColummns().sort((a, b) => a.displayOrder - b.displayOrder)
 
     const cells = orderedColumns.map((col) => (
         <HeaderCell key={col.dataKey}>
@@ -28,44 +28,38 @@ function buildHeaderCells() {
     return cells
 }
 
-function buildPlayerCells(player) {
-    const orderedColumns = batterColummns.sort((a, b) => a.displayOrder - b.displayOrder)
+function buildPlayerCellConstructor(rawValues = false) {
+    const orderedColumns = batterColummns(rawValues).sort((a, b) => a.displayOrder - b.displayOrder)
+    
+    function buildPlayerCells(player) {
+        const cells = orderedColumns.map((col) => {
+            let cellValue = Array.isArray(col.dataKey) ? col.dataKey.map((key) => player[key]) : player[col.dataKey]
+            
+            if (col.viewDataTransformation) {
+                cellValue = col.viewDataTransformation(cellValue)
+            }
+            
+            return (
+                <PlayerCell key={col.dataKey} dataType={col.dataType}>
+                    {cellValue}
+                </PlayerCell>
+            )
+        })
+    
+        return cells
+    }
 
-    const cells = orderedColumns.map((col) => {
-        let cellValue = player[col.dataKey]
-        
-        if (col.viewDataTransformation) {
-            cellValue = col.viewDataTransformation(cellValue)
-        }
-
-        return (
-            <PlayerCell key={col.dataKey} dataType={col.dataType}>
-                {cellValue}
-            </PlayerCell>
-        )
-    })
-
-    return cells
+    return buildPlayerCells
 }
 
 /* Players */
 function Players() {
-    const sampleBatter = useSampleBatter()
-    const incompleteSampleBatter = useSampleBatter(true)
+    const { batters, loading } = useContext(BattersContext)
 
-    useEffect(() => {
-        console.log("====")
+    const buildPlayerCells = buildPlayerCellConstructor()
 
-        console.log("Sample Batter", sampleBatter)
-        console.log("Incomplete Sample Batter", incompleteSampleBatter)
-    }, [incompleteSampleBatter])
-
-    if (sampleBatter.loading || incompleteSampleBatter.loading) {
+    if (loading || !batters) {
         return <p>Loading</p>
-    }
-
-    if (sampleBatter.error || sampleBatter.error) {
-        return <p>Error</p>
     }
 
     return (
@@ -78,13 +72,11 @@ function Players() {
                 </thead>
 
                 <tbody>
-                    <PlayerRow>
-                        {buildPlayerCells(sampleBatter.batter)}
-                    </PlayerRow>
-                        
-                    <PlayerRow>
-                        {buildPlayerCells(incompleteSampleBatter.batter)}
-                    </PlayerRow>    
+                    {batters.map((batter) => (
+                        <PlayerRow key={batter.id}>
+                            {buildPlayerCells(batter)}
+                        </PlayerRow>
+                    ))}
                 </tbody>
             </PlayersTable>
         </section>

@@ -6,6 +6,9 @@ import Header from "./modules/header"
 import Options from "./modules/options"
 import Players from "./modules/players"
 
+/* Contexts */
+import { BattersProvider } from "contexts/batters"
+
 /* Components */
 import Main from "./components/main"
 
@@ -15,11 +18,13 @@ function App() {
         <fragment>
             <Header />
             
-            <Main>
-                <Options />
+            <BattersProvider>
+                <Main>
+                    <Options />
 
-                <Players />
-            </Main>            
+                    <Players />
+                </Main>            
+            </BattersProvider>
         </fragment>
     )
 }

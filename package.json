@@ -15,7 +15,8 @@
     "devDependencies": {
         "eslint": "^8.57.0",
         "eslint-plugin-react": "^7.34.0",
-        "parcel-bundler": "^1.12.5"
+        "parcel-bundler": "^1.12.5",
+        "typescript": "^5.4.2"
     },
     "alias": {
         "modules": "./src/modules",
@@ -23,6 +24,7 @@
         "app-config": "./app-config.js",
         "data": "./src/data",
         "hooks": "./src/hooks",
-        "structures": "./src/structures"
+        "structures": "./src/structures",
+        "contexts": "./src/contexts"
     }
 }
