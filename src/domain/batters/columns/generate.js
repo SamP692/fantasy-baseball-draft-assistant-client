@@ -11,8 +11,26 @@ const positionsToText = createPositionsToTextTransformation("UTIL")
 function generateBatterColumns(rawValues = false) { 
     return [
         {
+            header: "Ign",
+            displayOrder: 10,
+            dataType: dataValueTypes.bool,
+            dataKey: "ignore",
+        },
+        {
+            header: "Tgt",
+            displayOrder: 50,
+            dataType: dataValueTypes.bool,
+            dataKey: "target",
+        },
+        {
+            header: "Inj",
+            displayOrder: 70,
+            dataType: dataValueTypes.bool,
+            dataKey: "injuryConcern"
+        },
+        {
             header: "Name",
-            displayOrder: 0,
+            displayOrder: 90,
             dataType: dataValueTypes.str,
             dataKey: "name"
         },
