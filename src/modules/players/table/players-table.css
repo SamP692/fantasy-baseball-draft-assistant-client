@@ -9,3 +9,7 @@ table#players-table th, table#players-table td {
 
     font-size: .7rem;
 }
+
+table#players-table tbody {
+    position: relative;
+}

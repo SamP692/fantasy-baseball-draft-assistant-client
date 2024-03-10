@@ -2,6 +2,9 @@
 import { h, createContext } from "preact"
 import { useState, useEffect } from "preact/hooks"
 
+/* Domain */
+import sortPlayers from "domain/players/data/sort"
+
 /* Data */
 import getBatters from "domain/batters/get"
 import getPitchers from "domain/pitchers/get"
@@ -30,14 +33,23 @@ export function PlayersProvider({ children }) {
     const [filterExpectedKeepers, setFilterExpectedKeepers] = useState(false)
 
     /* Sorting */
-    // const [sortColumn, setSortColumn] = useState(null)
+    const [sortColumn, setSortColumn] = useState(null)
 
     /* Sort Column */
-    // function sortPlayers() {
-    //     const [dataKey, dataType, direction] = sortColumn
+    function updatePlayerSorting() {
+        const [dataKey, direction] = sortColumn
 
-    //     if (dataType === "")
-    // }
+        const sortedPlayers = [ ...sortPlayers(players, dataKey, direction) ]
+
+        setPlayers(sortedPlayers)
+    }
+
+    /* Update Players on Sort Change */
+    useEffect(() => {
+        if (sortColumn) {
+            updatePlayerSorting()
+        }
+    }, [sortColumn])
 
     /* Get Players */
     async function fetchPlayers() {
@@ -80,6 +92,9 @@ export function PlayersProvider({ children }) {
             setError,
 
             setShouldUpdate,
+
+            sortColumn,
+            setSortColumn,
 
             playerCategory,
             setPlayerCategory,

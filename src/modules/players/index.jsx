@@ -1,6 +1,6 @@
 /* Core Libraries */
 import { h } from "preact"
-import { useContext } from "preact/hooks"
+import { useContext, useState, useEffect } from "preact/hooks"
 
 /* Configs */
 import generateBattersColumns from "domain/batters/columns/generate"
@@ -15,6 +15,7 @@ import HeaderRow from "./header-row"
 import HeaderCell from "./header-cell"
 import PlayerRow from "./player-row"
 import PlayerCell from "./player-cell"
+import SortLoadingNotification from "./sort-loading-notification"
 
 /* Behaviors */
 function buildHeaderCells(playerCategory, onClick) {
@@ -57,15 +58,47 @@ function buildPlayerCellConstructor(playerCategory, rawValues = false) {
     return buildPlayerCells
 }
 
+/* Text */
+const text = {
+    sortLoading: "Sorting..."
+}
+
 /* Players */
 function Players() {
-    const { players, loading, playerCategory } = useContext(PlayersContext)
+    const {
+        players,
+        loading,
+        playerCategory,
+        sortColumn,
+        setSortColumn
+    } = useContext(PlayersContext)
+    const [sortLoading, setSortLoading] = useState(false)
 
+    /* Player Cells */
     const buildPlayerCells = buildPlayerCellConstructor(playerCategory)
 
-    function handleColumnSort(data) {
-        console.log(data)
+    /* Handle Column Sort */
+    function handleColumnSort(column) {
+        setSortLoading(true)
+
+        if (!sortColumn) {
+            setSortColumn([column, "asc"])
+        } else {
+            const [columnKey, direction] = sortColumn
+
+            if (columnKey === column) {
+                const newDirection = direction === "asc" ? "desc" : "asc"
+    
+                setSortColumn([column, newDirection])
+            } else {
+                setSortColumn([column, "asc"])
+            }
+        }
     }
+
+    useEffect(() => {
+        setSortLoading(false)
+    }, [players])
 
     if (loading || !players) {
         return <p>Loading</p>
@@ -81,6 +114,11 @@ function Players() {
                 </thead>
 
                 <tbody>
+                    {sortLoading && (
+                        <SortLoadingNotification>
+                            {text.sortLoading}
+                        </SortLoadingNotification>
+                    )}
                     {players.map((batter) => (
                         <PlayerRow key={batter.id}>
                             {buildPlayerCells(batter)}
