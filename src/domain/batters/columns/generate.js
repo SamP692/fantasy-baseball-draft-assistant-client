@@ -114,7 +114,7 @@ function generateBatterColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "Average Exit Velocity",
+            header: "AEV",
             dispalyOrder: 1400,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "avgExitVel" : "avgExitVelDev",
@@ -122,7 +122,7 @@ function generateBatterColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "Barrel Rate",
+            header: "Barrel%",
             dispalyOrder: 1500,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "barrelRate" : "barrelRateDev",
@@ -130,7 +130,7 @@ function generateBatterColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "Chase Rate",
+            header: "Chase%",
             dispalyOrder: 1600,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "chaseRate" : "chaseRateDev",
@@ -138,7 +138,7 @@ function generateBatterColumns(rawValues = false) {
             colorScale: "prefer low"
         },
         {
-            header: "Whiff Rate",
+            header: "Whiff%",
             dispalyOrder: 1700,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "whiffRate" : "whiffRateDev",

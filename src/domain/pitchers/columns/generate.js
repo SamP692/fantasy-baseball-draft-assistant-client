@@ -121,7 +121,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer low"
         },
         {
-            header: "Average Exit Velocity",
+            header: "AEV",
             displayOrder: 1400,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "avgExitVel" : "avgExitVelDev",
@@ -129,7 +129,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer low"
         },
         {
-            header: "Barrel Rate",
+            header: "Barrel%",
             displayOrder: 1500,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "barrelRate" : "barrelRateDev",
@@ -137,7 +137,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer low"
         },
         {
-            header: "Zone Rate",
+            header: "Zone%",
             displayOrder: 1600,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "zoneRate" : "zoneRateDev",
@@ -145,7 +145,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "Chase Rate",
+            header: "Chase%",
             displayOrder: 1700,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "chaseRate" : "chaseRateDev",
@@ -153,7 +153,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "Whiff Rate",
+            header: "Whiff%",
             displayOrder: 1800,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "whiffRate" : "whiffRateDev",
@@ -161,7 +161,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "FB Rate",
+            header: "FB%",
             displayOrder: 1900,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "fbRate" : "fbRateDev",
@@ -177,7 +177,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "Breaking Ball Rate",
+            header: "Brk%",
             displayOrder: 2100,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "brkRate" : "brkRateDev",
@@ -185,7 +185,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "Breaking Ball Spin",
+            header: "Brk Spin",
             displayOrder: 2200,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "brkSpin" : "brkSpinDev",
@@ -193,7 +193,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "Off-Speed Rate",
+            header: "Offsp%",
             displayOrder: 2300,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "osRate" : "osRateDev",
@@ -201,7 +201,7 @@ function generatePitcherColumns(rawValues = false) {
             colorScale: "prefer high"
         },
         {
-            header: "Off-Speed Spin",
+            header: "Offsp Spin",
             displayOrder: 2400,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "osSpin" : "osSpinDev",
