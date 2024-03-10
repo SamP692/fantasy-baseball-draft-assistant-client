@@ -3,26 +3,10 @@ import { h } from "preact"
 
 /* Domain */
 import dataValueTypes from "domain/players/data/types"
+import limitNumberSize from "domain/data/view-transformations/limit-number-size"
 
 /* Styles */
 import "./player-cell.css"
-
-/* Behaviors */
-function limitNumberSize(num) {
-    const isNum = typeof num === "number"
-
-    if (isNum) {
-        const isInteger = Number.isInteger(num)
-
-        if (isInteger) return num
-
-        const limitedNumber = num.toFixed(2)
-
-        return limitedNumber
-    }
-
-    return num
-}
 
 /**
  * A color scale system I don't quite understand, but works
