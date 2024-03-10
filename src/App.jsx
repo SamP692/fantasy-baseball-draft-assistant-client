@@ -17,7 +17,7 @@ function App() {
     return (
         <fragment>
             <Header />
-            
+
             <PlayersProvider>
                 <Main>
                     <Options />
