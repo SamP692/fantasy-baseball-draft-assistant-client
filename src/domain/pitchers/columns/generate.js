@@ -101,98 +101,112 @@ function generatePitcherColumns(rawValues = false) {
             displayOrder: 1100,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "xwoba" : "xwobaDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer low"
         },
         {
             header: "xBA",
             displayOrder: 1200,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "xba" : "xbaDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer low"
         },
         {
             header: "xISO",
             displayOrder: 1300,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "xiso" : "xisoDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer low"
         },
         {
             header: "Average Exit Velocity",
             displayOrder: 1400,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "avgExitVel" : "avgExitVelDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer low"
         },
         {
             header: "Barrel Rate",
             displayOrder: 1500,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "barrelRate" : "barrelRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer low"
         },
         {
             header: "Zone Rate",
             displayOrder: 1600,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "zoneRate" : "zoneRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "Chase Rate",
             displayOrder: 1700,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "chaseRate" : "chaseRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "Whiff Rate",
             displayOrder: 1800,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "whiffRate" : "whiffRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "FB Rate",
             displayOrder: 1900,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "fbRate" : "fbRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "FB Spin",
             displayOrder: 2000,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "fbSpin" : "fbSpinDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "Breaking Ball Rate",
             displayOrder: 2100,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "brkRate" : "brkRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "Breaking Ball Spin",
             displayOrder: 2200,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "brkSpin" : "brkSpinDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "Off-Speed Rate",
             displayOrder: 2300,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "osRate" : "osRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "Off-Speed Spin",
             displayOrder: 2400,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "osSpin" : "osSpinDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         }
     ]
 }

@@ -94,56 +94,64 @@ function generateBatterColumns(rawValues = false) {
             dispalyOrder: 1100,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "xwoba" : "xwobaDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "xBA",
             dispalyOrder: 1200,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "xba" : "xbaDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "xISO",
             dispalyOrder: 1300,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "xiso" : "xisoDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "Average Exit Velocity",
             dispalyOrder: 1400,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "avgExitVel" : "avgExitVelDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "Barrel Rate",
             dispalyOrder: 1500,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "barrelRate" : "barrelRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
         {
             header: "Chase Rate",
             dispalyOrder: 1600,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "chaseRate" : "chaseRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer low"
         },
         {
             header: "Whiff Rate",
             dispalyOrder: 1700,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "whiffRate" : "whiffRateDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer low"
         },
         {
             header: "Speed",
             dispalyOrder: 1800,
             dataType: dataValueTypes.num,
             dataKey: rawValues ? "speed" : "speedDev",
-            hideable: true
+            hideable: true,
+            colorScale: "prefer high"
         },
     ]
 }

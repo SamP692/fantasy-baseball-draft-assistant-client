@@ -46,7 +46,7 @@ function buildPlayerCellConstructor(playerCategory, rawValues = false) {
             }
             
             return (
-                <PlayerCell key={col.dataKey} dataType={col.dataType}>
+                <PlayerCell key={col.dataKey} colorScale={col.colorScale} dataType={col.dataType}>
                     {cellValue}
                 </PlayerCell>
             )
