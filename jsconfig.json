@@ -5,10 +5,8 @@
             "modules/*": ["src/modules/*"],
             "components/*": ["src/components/*"],
             "app-config": ["./app-config"],
-            "data/*": ["src/data/*"],
-            "hooks/*": ["src/hooks/*"],
-            "structures/*": ["src/structures/*"],
-            "contexts/*": ["src/contexts/*"]
+            "contexts/*": ["src/contexts/*"],
+            "domain/*": ["src/domain/*"]
         }
     }
 }

@@ -5,9 +5,13 @@ import { h } from "preact"
 import "./header-cell.css"
 
 /* Header Cell */
-function HeaderCell({ children }) {
+function HeaderCell({ children, dataKey, onClick }) {
+    function handleClick() {
+        onClick(dataKey)
+    }
+
     return (
-        <th className="header-cell">
+        <th className="header-cell" onClick={handleClick}>
             {children}
         </th>
     )

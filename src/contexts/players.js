@@ -3,8 +3,8 @@ import { h, createContext } from "preact"
 import { useState, useEffect } from "preact/hooks"
 
 /* Data */
-import getBatters from "data/batters/get"
-import getPitchers from "data/pitchers/get"
+import getBatters from "domain/batters/get"
+import getPitchers from "domain/pitchers/get"
 
 /* Batters Context */
 export const PlayersContext = createContext({
@@ -13,7 +13,7 @@ export const PlayersContext = createContext({
     players: null
 })
 
-/* Batters Provider */
+/* Players Provider */
 export function PlayersProvider({ children }) {
     /* Data */
     const [playerCategory, setPlayerCategory] = useState("batters")
@@ -28,6 +28,16 @@ export function PlayersProvider({ children }) {
     const [positionFilter, setPositionFilter] = useState(null)
     const [filterOnlyKnownKeepers, setFilterOnlyKnownKeepers] = useState(false)
     const [filterExpectedKeepers, setFilterExpectedKeepers] = useState(false)
+
+    /* Sorting */
+    // const [sortColumn, setSortColumn] = useState(null)
+
+    /* Sort Column */
+    // function sortPlayers() {
+    //     const [dataKey, dataType, direction] = sortColumn
+
+    //     if (dataType === "")
+    // }
 
     /* Get Players */
     async function fetchPlayers() {

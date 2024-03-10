@@ -12,28 +12,12 @@ import OptionsList from "./options-list"
 import DropdownListFilter from "./dropdown-list-filter"
 import ChangeViewButton from "./change-view-button"
 
-/* Structures */
-import BATTER_POSITIONS from "structures/batter-positions"
-import PITCHER_POSITIONS from "structures/pitcher-positions"
+/* Helpers */
+import buildPositionOptions from "./_helpers/build-position-options"
 
 /* Text */
 const text = {
     title: "Controls"
-}
-
-/* Build Position Options */
-function buildPositionOptions(playerCategory, positionFilter) {
-    const defaultList = playerCategory === "batters" ? BATTER_POSITIONS : PITCHER_POSITIONS
-
-    if (!positionFilter) return defaultList
-
-    const updatedList = defaultList.map(({ value, label }) => ({
-        value,
-        label,
-        selection: value === positionFilter
-    }))
-
-    return updatedList
 }
 
 /* Options */
@@ -68,6 +52,7 @@ function Options() {
         setShouldUpdate(true)
     }
 
+    /* Handle Position Filter */
     function handlePositionFilter(event) {
         const position = event.target.value
 

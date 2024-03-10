@@ -1,61 +1,32 @@
-/* Data Types */
-export const columnDataTypes = {
-    str: "string",
-    num: "numeric",
-    bool: "boolean"
-}
+/* Domain */
+import createPositionsToTextTransformation from "domain/players/view-transformations/positions-to-text"
+import isConfirmedFreeAgent from "domain/players/view-transformations/is-confirmed-free-agent"
+import fantasyTeamNameAlias from "domain/players/view-transformations/fantasy-team-name-alias"
+import dataValueTypes from "domain/players/data/types"
 
 /* View Data Transformations */
-function positionsToText(positions) {
-    return Array.isArray(positions) ? positions.join(", ") : "UTIL"
-}
-
-function isConfirmedFreeAgent([currentFantasyTeam, keeperRound]) {
-    const isKnownFreeAgent = currentFantasyTeam === "FA"
-
-    const cantBeKept = typeof currentFantasyTeam === "string" && currentFantasyTeam.length > 2 && !keeperRound
-    
-    return isKnownFreeAgent || cantBeKept
-}
-
-function fantasyTeamNameAlias(team) {
-    if (!team) return null
-
-    if (team.includes("Fergie")) return "FergieNFT"
-
-    if (team.includes("Suck on")) return "Suck on these"
-
-    if (team.includes("Peanut Butter")) return "Elly Time"
-
-    if (team.includes("Like Yandy")) return "Yandy's"
-
-    if (team.includes("Wtf wander")) return "Wtf Wander"
-
-    if (team.includes("Naylor")) return "Naylor Show"
-
-    return team
-}
+const positionsToText = createPositionsToTextTransformation("UTIL")
 
 /* Column Configuration */
-function batterColumns(rawValues = false) { 
+function generateBatterColumns(rawValues = false) { 
     return [
         {
             header: "Name",
             displayOrder: 0,
-            dataType: columnDataTypes.str,
+            dataType: dataValueTypes.str,
             dataKey: "name"
         },
         {
             header: "Team",
             displayOrder: 100,
-            dataType: columnDataTypes.str,
+            dataType: dataValueTypes.str,
             dataKey: "team",
             hideable: true
         },
         {
             header: "Fantasy Team",
             displayOrder: 200,
-            dataType: columnDataTypes.str,
+            dataType: dataValueTypes.str,
             dataKey: "currentFantasyTeam",
             viewDataTransformation: fantasyTeamNameAlias,
             hideable: true
@@ -63,7 +34,7 @@ function batterColumns(rawValues = false) {
         {
             header: "Eligible Positions",
             displayOrder: 300,
-            dataType: columnDataTypes.str,
+            dataType: dataValueTypes.str,
             dataKey: "yahooPositions",
             viewDataTransformation: positionsToText,
             hideable: true
@@ -71,14 +42,14 @@ function batterColumns(rawValues = false) {
         {
             header: "Age",
             displayOrder: 400,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: "age",
             hideable: true
         },
         {
             header: "Confirmed Free Agent",
             displayOrder: 500,
-            dataType: columnDataTypes.bool,
+            dataType: dataValueTypes.bool,
             dataKey: ["currentFantasyTeam", "keeperRound"],
             viewDataTransformation: isConfirmedFreeAgent,
             hideable: true
@@ -86,95 +57,95 @@ function batterColumns(rawValues = false) {
         {
             header: "Minimum Keeper Round",
             displayOrder: 600,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: "keeperRound",
             hideable: true
         },
         {
             header: "Confirmed Keeper",
             displayOrder: 700,
-            dataType: columnDataTypes.bool,
+            dataType: dataValueTypes.bool,
             dataKey: "confirmedKeeper",
             hideable: true,
         },
         {
             header: "Expected Free Agent",
             displayOrder: 800,
-            dataType: columnDataTypes.bool,
+            dataType: dataValueTypes.bool,
             dataKey: "expectedFa",
             hideable: true
         },
         {
             header: "Expected Keeper",
             displayOrder: 900,
-            dataType: columnDataTypes.bool,
+            dataType: dataValueTypes.bool,
             dataKey: "expectedKeeper",
             hideable: true
         },
         {
             header: "PAs",
             dispalyOrder: 1000,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: "pa",
             hideable: true
         },
         {
             header: "xwOBA",
             dispalyOrder: 1100,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: rawValues ? "xwoba" : "xwobaDev",
             hideable: true
         },
         {
             header: "xBA",
             dispalyOrder: 1200,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: rawValues ? "xba" : "xbaDev",
             hideable: true
         },
         {
             header: "xISO",
             dispalyOrder: 1300,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: rawValues ? "xiso" : "xisoDev",
             hideable: true
         },
         {
             header: "Average Exit Velocity",
             dispalyOrder: 1400,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: rawValues ? "avgExitVel" : "avgExitVelDev",
             hideable: true
         },
         {
             header: "Barrel Rate",
             dispalyOrder: 1500,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: rawValues ? "barrelRate" : "barrelRateDev",
             hideable: true
         },
         {
             header: "Chase Rate",
             dispalyOrder: 1600,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: rawValues ? "chaseRate" : "chaseRateDev",
             hideable: true
         },
         {
             header: "Whiff Rate",
             dispalyOrder: 1700,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: rawValues ? "whiffRate" : "whiffRateDev",
             hideable: true
         },
         {
             header: "Speed",
             dispalyOrder: 1800,
-            dataType: columnDataTypes.num,
+            dataType: dataValueTypes.num,
             dataKey: rawValues ? "speed" : "speedDev",
             hideable: true
         },
     ]
 }
 
-export default batterColumns
+export default generateBatterColumns

@@ -3,8 +3,8 @@ import { h } from "preact"
 import { useContext } from "preact/hooks"
 
 /* Configs */
-import batterColumns from "structures/batter-columns"
-import pitcherColumns from "structures/pitcher-columns"
+import generateBattersColumns from "domain/batters/columns/generate"
+import generatePitchersColumns from "domain/pitchers/columns/generate"
 
 /* Contexts */
 import { PlayersContext } from "contexts/players"
@@ -17,13 +17,13 @@ import PlayerRow from "./player-row"
 import PlayerCell from "./player-cell"
 
 /* Behaviors */
-function buildHeaderCells(playerCategory) {
-    const columns = playerCategory === "batters" ? batterColumns() : pitcherColumns()
+function buildHeaderCells(playerCategory, onClick) {
+    const columns = playerCategory === "batters" ? generateBattersColumns() : generatePitchersColumns()
 
     const orderedColumns = columns.sort((a, b) => a.displayOrder - b.displayOrder)
 
     const cells = orderedColumns.map((col) => (
-        <HeaderCell key={col.dataKey}>
+        <HeaderCell key={col.dataKey} dataKey={col.dataKey} onClick={onClick}>
             {col.header}
         </HeaderCell>
     ))
@@ -32,7 +32,7 @@ function buildHeaderCells(playerCategory) {
 }
 
 function buildPlayerCellConstructor(playerCategory, rawValues = false) {
-    const columns = playerCategory === "batters" ? batterColumns(rawValues) : pitcherColumns(rawValues)
+    const columns = playerCategory === "batters" ? generateBattersColumns(rawValues) : generatePitchersColumns(rawValues)
 
     const orderedColumns = columns.sort((a, b) => a.displayOrder - b.displayOrder)
     
@@ -63,6 +63,10 @@ function Players() {
 
     const buildPlayerCells = buildPlayerCellConstructor(playerCategory)
 
+    function handleColumnSort(data) {
+        console.log(data)
+    }
+
     if (loading || !players) {
         return <p>Loading</p>
     }
@@ -72,7 +76,7 @@ function Players() {
             <PlayersTable>
                 <thead>
                     <HeaderRow>
-                        {buildHeaderCells(playerCategory)}
+                        {buildHeaderCells(playerCategory, handleColumnSort)}
                     </HeaderRow>
                 </thead>
 

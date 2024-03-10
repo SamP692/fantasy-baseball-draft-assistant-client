@@ -1,8 +1,8 @@
 /* Core Libraries */
 import { h } from "preact"
 
-/* Structures */
-import { columnDataTypes } from "structures/batter-columns"
+/* Domain */
+import dataValueTypes from "domain/players/data/types"
 
 /* Styles */
 import "./player-cell.css"
@@ -26,7 +26,7 @@ function limitNumberSize(num) {
 
 /* Player Cell */
 function PlayerCell({ children, dataType }) {
-    if (dataType === columnDataTypes.bool) {
+    if (dataType === dataValueTypes.bool) {
         return (
             <td className="player-cell bool">
                 <input type="checkbox" checked={children} />
@@ -35,7 +35,7 @@ function PlayerCell({ children, dataType }) {
         )
     }
     
-    const dataTypeClass = dataType === columnDataTypes.num ? "num" : "str"
+    const dataTypeClass = dataType === dataValueTypes.num ? "num" : "str"
 
     return (
         <td className={`player-cell ${dataTypeClass}`}>
