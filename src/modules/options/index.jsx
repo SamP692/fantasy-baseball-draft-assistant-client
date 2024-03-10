@@ -38,7 +38,9 @@ function Options() {
         hiddenColumns,
         setHiddenColumns,
         hideUnavailable,
-        setHideUnavailable
+        setHideUnavailable,
+        hideIgnoredPlayers,
+        setHideIgnoredPlayers
     } = useContext(PlayersContext)
     const [positionList, setPositionList] = useState(buildPositionOptions(playerCategory, positionFilter))
 
@@ -88,6 +90,11 @@ function Options() {
         setHideUnavailable(!hideUnavailable)
     }
 
+    /* Handle Ignored Players Visibility Toggle */
+    function handleHideIgnoredPlayers() {
+        setHideIgnoredPlayers(!hideIgnoredPlayers)
+    }
+
     return (
         <Container>
             <Header>
@@ -106,6 +113,8 @@ function Options() {
                 <ColumnVisibility off columns={columns} onChange={handleHiddenColumnChange} hiddenColumns={hiddenColumns} />
 
                 <Switch checked={hideUnavailable} onChange={handleUnavailableToggle}>Hide Unavailable</Switch>
+
+                <Switch checked={hideIgnoredPlayers} onChange={handleHideIgnoredPlayers}>Hide Ignored Players</Switch>
             </OptionsList>
         </Container>
     )

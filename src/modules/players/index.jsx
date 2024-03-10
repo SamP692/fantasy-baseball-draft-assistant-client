@@ -72,7 +72,8 @@ function Players() {
         playerCategory,
         sortColumn,
         setSortColumn,
-        hideUnavailable
+        hideUnavailable,
+        hideIgnoredPlayers
     } = useContext(PlayersContext)
     const [sortLoading, setSortLoading] = useState(false)
 
@@ -129,7 +130,10 @@ function Players() {
                         </SortLoadingNotification>
                     )}
                     {players.map((batter) => {
-                        if (hideUnavailable && batter.expectedKeeper && !batter.currentFantasyTeam.includes("Yandy")) return null
+                        const shouldHideUnavailable = hideUnavailable && batter.expectedKeeper && !batter.currentFantasyTeam.includes("Yandy")
+                        const shouldHideIgnored = hideIgnoredPlayers && batter.ignore
+
+                        if (shouldHideUnavailable || shouldHideIgnored) return null
 
                         return (
                             <PlayerRow key={batter.id}>

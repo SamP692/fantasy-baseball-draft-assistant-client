@@ -16,7 +16,8 @@ import updateStoredPlayerChanges from "domain/localStorage/players/update"
 export const PlayersContext = createContext({
     loading: true,
     playerCategory: "batters",
-    players: null
+    players: null,
+    hideIgnoredPlayers: true
 })
 
 /* Players Provider */
@@ -35,6 +36,7 @@ export function PlayersProvider({ children }) {
     const [filterOnlyKnownKeepers, setFilterOnlyKnownKeepers] = useState(false)
     const [filterExpectedKeepers, setFilterExpectedKeepers] = useState(false)
     const [hideUnavailable, setHideUnavailable] = useState(false)
+    const [hideIgnoredPlayers, setHideIgnoredPlayers] = useState(true)
 
     /* Sorting */
     const [sortColumn, setSortColumn] = useState(null)
@@ -125,6 +127,9 @@ export function PlayersProvider({ children }) {
             
             players,
             updatePlayer,
+
+            hideIgnoredPlayers,
+            setHideIgnoredPlayers,
 
             positionFilter,
             setPositionFilter,
