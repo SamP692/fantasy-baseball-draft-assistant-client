@@ -46,7 +46,7 @@ function buildPlayerCellConstructor(playerCategory, handleCheckboxChange, rawVal
             }
             
             return (
-                <PlayerCell key={col.dataKey} player={player.id} onCheckboxChange={handleCheckboxChange} col={col.dataKey} colorScale={col.colorScale} dataType={col.dataType}>
+                <PlayerCell key={col.dataKey} player={player.id} keeperRound={player.keeperRound} onCheckboxChange={handleCheckboxChange} col={col.dataKey} colorScale={col.colorScale} dataType={col.dataType}>
                     {cellValue}
                 </PlayerCell>
             )

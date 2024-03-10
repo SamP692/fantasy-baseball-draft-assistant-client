@@ -54,14 +54,17 @@ function isFaColumn(columnKey) {
 }
 
 /* Player Cell */
-function PlayerCell({ children, col, player, onCheckboxChange, dataType, colorScale }) {
+function PlayerCell({ children, col, player, keeperRound, onCheckboxChange, dataType, colorScale }) {
     function handleCheckboxChange() {
         onCheckboxChange(player, col, !children)
     }
 
     if (dataType === dataValueTypes.bool) {
         const isFaCol = isFaColumn(col)
-        if (isFaCol && !children) return <td></td>
+        const cantBeKept = !keeperRound && col === "expectedKeeper"
+
+        const shouldHideCheckbox = (isFaCol && !children) || cantBeKept
+        if (shouldHideCheckbox) return <td></td>
 
         return (
             <td className="player-cell bool">
