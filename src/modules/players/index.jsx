@@ -123,7 +123,7 @@ function Players() {
                         </SortLoadingNotification>
                     )}
                     {players.map((batter) => {
-                        if (hideUnavailable && batter.expectedKeeper) return null
+                        if (hideUnavailable && batter.expectedKeeper && !batter.currentFantasyTeam.include("Yandy")) return null
 
                         return (
                             <PlayerRow key={batter.id}>
