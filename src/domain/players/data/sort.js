@@ -26,8 +26,6 @@ function setConfirmedFreeAgentValue(player, columnKey) {
 function sortPlayers(players, columnKey, direction) {
     const isConfirmedFreeAgent = isConfirmedFreeAgentColumn(columnKey)
 
-    console.log("Direction: ", direction)
-
     const sortedPlayers = players.sort((a, b) => {
         const aVal = isConfirmedFreeAgent ? setConfirmedFreeAgentValue(a, columnKey) : a[columnKey]
         const bVal = isConfirmedFreeAgent ? setConfirmedFreeAgentValue(b, columnKey) : b[columnKey]
