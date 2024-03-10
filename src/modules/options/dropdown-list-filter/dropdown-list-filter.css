@@ -1,0 +1,10 @@
+label.dropdown-list-filter {
+    padding: 1rem;
+}
+
+select.dropdown-list-filter {
+    border: 1px solid lightblue;
+    background-color: rgba(0, 0, 255, 0.1);
+    padding: 0.3rem;
+    font-weight: bold;
+}
