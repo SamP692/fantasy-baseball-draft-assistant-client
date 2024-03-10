@@ -43,12 +43,27 @@ function isMyPlayer(cellData) {
     return isMyPlayer
 }
 
+function isFaColumn(columnKey) {
+    const columnKeyIsArray = Array.isArray(columnKey)
+
+    if (!columnKeyIsArray) return false
+
+    const isFaColumn = columnKey.includes("currentFantasyTeam") && columnKey.includes("keeperRound")
+
+    return isFaColumn
+}
+
 /* Player Cell */
-function PlayerCell({ children, dataType, colorScale }) {
+function PlayerCell({ children, col, dataType, colorScale }) {
     if (dataType === dataValueTypes.bool) {
+        const isFaCol = isFaColumn(col)
+
         return (
             <td className="player-cell bool">
-                <input type="checkbox" checked={children} />
+                {isFaCol && !children ?
+                    null :
+                    <input type="checkbox" checked={children} />
+                }
             </td>
         )
     }

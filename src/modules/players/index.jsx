@@ -46,7 +46,7 @@ function buildPlayerCellConstructor(playerCategory, rawValues = false) {
             }
             
             return (
-                <PlayerCell key={col.dataKey} colorScale={col.colorScale} dataType={col.dataType}>
+                <PlayerCell key={col.dataKey} col={col.dataKey} colorScale={col.colorScale} dataType={col.dataType}>
                     {cellValue}
                 </PlayerCell>
             )
@@ -70,7 +70,8 @@ function Players() {
         loading,
         playerCategory,
         sortColumn,
-        setSortColumn
+        setSortColumn,
+        hideUnavailable
     } = useContext(PlayersContext)
     const [sortLoading, setSortLoading] = useState(false)
 
@@ -121,11 +122,14 @@ function Players() {
                             {text.sortLoading}
                         </SortLoadingNotification>
                     )}
-                    {players.map((batter) => (
-                        <PlayerRow key={batter.id}>
-                            {buildPlayerCells(batter)}
-                        </PlayerRow>
-                    ))}
+                    {players.map((batter) => {
+                        if (hideUnavailable && batter.expectedKeeper) return null
+
+                        return (
+                            <PlayerRow key={batter.id}>
+                                {buildPlayerCells(batter)}
+                            </PlayerRow>
+                        )})}
                 </tbody>
             </PlayersTable>
         </section>
