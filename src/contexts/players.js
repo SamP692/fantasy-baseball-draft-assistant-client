@@ -9,6 +9,9 @@ import sortPlayers from "domain/players/data/sort"
 import getBatters from "domain/batters/get"
 import getPitchers from "domain/pitchers/get"
 
+/* Storage */
+import updateStoredPlayerChanges from "domain/localStorage/players/update"
+
 /* Batters Context */
 export const PlayersContext = createContext({
     loading: true,
@@ -38,6 +41,23 @@ export function PlayersProvider({ children }) {
 
     /* View */
     const [hiddenColumns, setHiddenColumns] = useState([])
+
+    /* Function Update Player */
+    function updatePlayer(playerId, dataKey, value) {
+        const updatedPlayers = players.map(player => {
+            if (player.id === playerId) {
+                return {
+                    ...player,
+                    [dataKey]: value
+                }
+            }
+
+            return player
+        })
+
+        setPlayers(updatedPlayers)
+        updateStoredPlayerChanges(playerId, dataKey, value)
+    }
 
     /* Sort Column */
     function updatePlayerSorting() {
@@ -104,6 +124,7 @@ export function PlayersProvider({ children }) {
             setPlayerCategory,
             
             players,
+            updatePlayer,
 
             positionFilter,
             setPositionFilter,

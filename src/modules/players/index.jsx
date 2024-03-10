@@ -32,7 +32,7 @@ function buildHeaderCells(playerCategory, onClick) {
     return cells
 }
 
-function buildPlayerCellConstructor(playerCategory, rawValues = false) {
+function buildPlayerCellConstructor(playerCategory, handleCheckboxChange, rawValues = false) {
     const columns = playerCategory === "batters" ? generateBattersColumns(rawValues) : generatePitchersColumns(rawValues)
 
     const orderedColumns = columns.sort((a, b) => a.displayOrder - b.displayOrder)
@@ -46,7 +46,7 @@ function buildPlayerCellConstructor(playerCategory, rawValues = false) {
             }
             
             return (
-                <PlayerCell key={col.dataKey} col={col.dataKey} colorScale={col.colorScale} dataType={col.dataType}>
+                <PlayerCell key={col.dataKey} player={player.id} onCheckboxChange={handleCheckboxChange} col={col.dataKey} colorScale={col.colorScale} dataType={col.dataType}>
                     {cellValue}
                 </PlayerCell>
             )
@@ -67,6 +67,7 @@ const text = {
 function Players() {
     const {
         players,
+        updatePlayer,
         loading,
         playerCategory,
         sortColumn,
@@ -75,8 +76,13 @@ function Players() {
     } = useContext(PlayersContext)
     const [sortLoading, setSortLoading] = useState(false)
 
+    /* Handle Checkboxes */
+    function handleCheckboxChange(playerId, dataKey, checked) {
+        updatePlayer(playerId, dataKey, checked)
+    }
+
     /* Player Cells */
-    const buildPlayerCells = buildPlayerCellConstructor(playerCategory)
+    const buildPlayerCells = buildPlayerCellConstructor(playerCategory, handleCheckboxChange)
 
     /* Handle Column Sort */
     function handleColumnSort(column) {
@@ -123,7 +129,7 @@ function Players() {
                         </SortLoadingNotification>
                     )}
                     {players.map((batter) => {
-                        if (hideUnavailable && batter.expectedKeeper && !batter.currentFantasyTeam.include("Yandy")) return null
+                        if (hideUnavailable && batter.expectedKeeper && !batter.currentFantasyTeam.includes("Yandy")) return null
 
                         return (
                             <PlayerRow key={batter.id}>

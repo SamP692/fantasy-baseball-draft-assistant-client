@@ -3,6 +3,23 @@ import appConfig from "app-config"
 
 /* Domain */
 import buildFiltersString from "domain/api/players/filters/query/build"
+import getLocalStoragePlayerChanges from "domain/localStorage/players/get"
+
+/* Patch From Local Storage */
+function patchPlayersFromLocalStorage(databasePlayers) {
+    const localStoragePlayerChanges = getLocalStoragePlayerChanges()
+
+    const patchedPlayers = databasePlayers.map(player => {
+        const playerChanges = localStoragePlayerChanges[player.id] || {}
+
+        return {
+            ...player,
+            ...playerChanges
+        }
+    })
+
+    return patchedPlayers
+}
 
 /* Get Players */
 async function getPlayers(playerCategory, filters) {
@@ -18,7 +35,9 @@ async function getPlayers(playerCategory, filters) {
 
     const players = data.data
 
-    return players
+    const patchedPlayers = patchPlayersFromLocalStorage(players)
+
+    return patchedPlayers
 }
 
 export default getPlayers

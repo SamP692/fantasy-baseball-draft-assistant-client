@@ -54,16 +54,18 @@ function isFaColumn(columnKey) {
 }
 
 /* Player Cell */
-function PlayerCell({ children, col, dataType, colorScale }) {
+function PlayerCell({ children, col, player, onCheckboxChange, dataType, colorScale }) {
+    function handleCheckboxChange() {
+        onCheckboxChange(player, col, !children)
+    }
+
     if (dataType === dataValueTypes.bool) {
         const isFaCol = isFaColumn(col)
+        if (isFaCol && !children) return <td></td>
 
         return (
             <td className="player-cell bool">
-                {isFaCol && !children ?
-                    null :
-                    <input type="checkbox" checked={children} />
-                }
+                <input type="checkbox" onChange={handleCheckboxChange} checked={children} />
             </td>
         )
     }
