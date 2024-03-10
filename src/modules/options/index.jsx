@@ -43,9 +43,8 @@ function Options() {
         setLoading(true)
 
         const changingToPitcherView = playerCategory === "batters"
-        if (changingToPitcherView) {
-            setPositionFilter("SP")
-        }
+        const defaultPositionFilter = changingToPitcherView ? "SP" : null
+        setPositionFilter(defaultPositionFilter)
 
         
         setPlayerCategory(playerCategory === "batters" ? "pitchers" : "batters")
