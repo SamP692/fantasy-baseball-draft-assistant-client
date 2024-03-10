@@ -32,7 +32,7 @@ function generateBatterColumns(rawValues = false) {
             hideable: true
         },
         {
-            header: "Eligible Positions",
+            header: "Positions",
             displayOrder: 300,
             dataType: dataValueTypes.str,
             dataKey: "yahooPositions",
@@ -47,7 +47,7 @@ function generateBatterColumns(rawValues = false) {
             hideable: true
         },
         {
-            header: "Confirmed Free Agent",
+            header: "FA",
             displayOrder: 500,
             dataType: dataValueTypes.bool,
             dataKey: ["currentFantasyTeam", "keeperRound"],
@@ -55,28 +55,28 @@ function generateBatterColumns(rawValues = false) {
             hideable: true
         },
         {
-            header: "Minimum Keeper Round",
+            header: "Rnd",
             displayOrder: 600,
             dataType: dataValueTypes.num,
             dataKey: "keeperRound",
             hideable: true
         },
+        // {
+        //     header: "Confirmed Keeper",
+        //     displayOrder: 700,
+        //     dataType: dataValueTypes.bool,
+        //     dataKey: "confirmedKeeper",
+        //     hideable: true,
+        // },
+        // {
+        //     header: "Expected Free Agent",
+        //     displayOrder: 800,
+        //     dataType: dataValueTypes.bool,
+        //     dataKey: "expectedFa",
+        //     hideable: true
+        // },
         {
-            header: "Confirmed Keeper",
-            displayOrder: 700,
-            dataType: dataValueTypes.bool,
-            dataKey: "confirmedKeeper",
-            hideable: true,
-        },
-        {
-            header: "Expected Free Agent",
-            displayOrder: 800,
-            dataType: dataValueTypes.bool,
-            dataKey: "expectedFa",
-            hideable: true
-        },
-        {
-            header: "Expected Keeper",
+            header: "Keep",
             displayOrder: 900,
             dataType: dataValueTypes.bool,
             dataKey: "expectedKeeper",
