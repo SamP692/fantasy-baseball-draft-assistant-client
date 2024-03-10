@@ -1,0 +1,29 @@
+div#column-visibility {
+    overflow-x: scroll;
+}
+
+table#column-visibility {
+    border: 1px solid lightgray;
+
+    margin-top: 1rem;
+
+    padding: 4px;
+
+    max-width: 100%;
+    overflow-x: scroll;
+}
+
+table#column-visibility th, table#column-visibility td {
+    padding: 0 4px;
+
+    font-size: .7rem;
+}
+
+table#column-visibility td {
+    text-align: center;
+}
+
+table#column-visibility span {
+    display: block;
+    width: 3rem;
+}

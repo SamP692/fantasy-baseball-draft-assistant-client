@@ -35,6 +35,9 @@ export function PlayersProvider({ children }) {
     /* Sorting */
     const [sortColumn, setSortColumn] = useState(null)
 
+    /* View */
+    const [hiddenColumns, setHiddenColumns] = useState([])
+
     /* Sort Column */
     function updatePlayerSorting() {
         const [dataKey, direction] = sortColumn
@@ -108,7 +111,10 @@ export function PlayersProvider({ children }) {
             setFilterOnlyKnownKeepers,
             
             filterExpectedKeepers,
-            setFilterExpectedKeepers
+            setFilterExpectedKeepers,
+
+            hiddenColumns,
+            setHiddenColumns
         }}>
             {children}
         </PlayersContext.Provider>
