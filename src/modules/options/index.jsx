@@ -16,6 +16,7 @@ import OptionsList from "./options-list"
 import DropdownListFilter from "./dropdown-list-filter"
 import ChangeViewButton from "./change-view-button"
 import ColumnVisibility from "./column-visibility"
+import Switch from "./switch"
 
 /* Helpers */
 import buildPositionOptions from "./_helpers/build-position-options"
@@ -35,7 +36,9 @@ function Options() {
         setPositionFilter,
         setShouldUpdate,
         hiddenColumns,
-        setHiddenColumns
+        setHiddenColumns,
+        hideUnavailable,
+        setHideUnavailable
     } = useContext(PlayersContext)
     const [positionList, setPositionList] = useState(buildPositionOptions(playerCategory, positionFilter))
 
@@ -80,6 +83,11 @@ function Options() {
         setHiddenColumns(newHiddenList)
     }
 
+    /* Handle Unavailable Toggle */
+    function handleUnavailableToggle() {
+        setHideUnavailable(!hideUnavailable)
+    }
+
     return (
         <Container>
             <Header>
@@ -96,6 +104,8 @@ function Options() {
                 </DropdownListFilter>
 
                 <ColumnVisibility off columns={columns} onChange={handleHiddenColumnChange} hiddenColumns={hiddenColumns} />
+
+                <Switch checked={hideUnavailable} onChange={handleUnavailableToggle}>Hide Unavailable</Switch>
             </OptionsList>
         </Container>
     )

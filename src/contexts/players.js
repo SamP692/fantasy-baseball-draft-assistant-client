@@ -31,6 +31,7 @@ export function PlayersProvider({ children }) {
     const [positionFilter, setPositionFilter] = useState(null)
     const [filterOnlyKnownKeepers, setFilterOnlyKnownKeepers] = useState(false)
     const [filterExpectedKeepers, setFilterExpectedKeepers] = useState(false)
+    const [hideUnavailable, setHideUnavailable] = useState(false)
 
     /* Sorting */
     const [sortColumn, setSortColumn] = useState(null)
@@ -112,6 +113,9 @@ export function PlayersProvider({ children }) {
             
             filterExpectedKeepers,
             setFilterExpectedKeepers,
+
+            hideUnavailable,
+            setHideUnavailable,
 
             hiddenColumns,
             setHiddenColumns
