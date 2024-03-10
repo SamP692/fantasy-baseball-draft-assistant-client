@@ -34,6 +34,15 @@ function getColor(value, preference) {
     return `rgba(${r}, ${g}, ${b}, 0.7)`
 }
 
+function isMyPlayer(cellData) {
+    const isNotString = typeof cellData !== "string"
+    if (isNotString) return false
+
+    const isMyPlayer = cellData.includes("Yandy's")
+
+    return isMyPlayer
+}
+
 /* Player Cell */
 function PlayerCell({ children, dataType, colorScale }) {
     if (dataType === dataValueTypes.bool) {
@@ -43,10 +52,16 @@ function PlayerCell({ children, dataType, colorScale }) {
             </td>
         )
     }
+
+    const isOnMyTeam = isMyPlayer(children)
     
     const dataTypeClass = dataType === dataValueTypes.num ? "num" : "str"
 
-    const backgroundColor = colorScale ? getColor(children, colorScale) : null
+    const colorScaleColor = colorScale ? getColor(children, colorScale) : null
+    const myTeamColor = isOnMyTeam ? "rgba(0, 255, 0, 0.7)" : null
+
+    const backgroundColor = colorScaleColor || myTeamColor
+
     const styles = backgroundColor ? { backgroundColor, fontWeight: "bold" } : {}
 
     return (
