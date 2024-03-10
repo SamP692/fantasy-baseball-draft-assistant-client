@@ -82,16 +82,18 @@ function Players() {
         setSortLoading(true)
 
         if (!sortColumn) {
-            setSortColumn([column, "asc"])
+            setSortColumn([column, "desc"])
         } else {
             const [columnKey, direction] = sortColumn
 
-            if (columnKey === column) {
+            /* TEMP: Right now only one column is calculated by two column keys */
+            const changingSameColumnSort = (Array.isArray(columnKey) && Array.isArray(column)) || columnKey === column
+            if (changingSameColumnSort) {
                 const newDirection = direction === "asc" ? "desc" : "asc"
     
                 setSortColumn([column, newDirection])
             } else {
-                setSortColumn([column, "asc"])
+                setSortColumn([column, "desc"])
             }
         }
     }
